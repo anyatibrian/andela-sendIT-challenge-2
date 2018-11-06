@@ -21,3 +21,10 @@ def test_post_parcel_orders_empty_fields(client):
     response = client.post('api/v1/parcels', data=json.dumps(test_data.empty_fields))
     assert response.status_code == 400
     assert b'some fields are empty please' in response.data
+
+
+# checks for bad input types in the field
+def test_check_invalid_fields_in_parcel_orders(client):
+    response = client.post('api/v1/parcels', data=json.dumps(test_data.bad_data))
+    assert response.status_code == 400
+    assert b'parcel_name, description, destination, pick_up should be strings' in response.data
