@@ -1,5 +1,6 @@
 import string
 import random
+import re
 
 
 def serial_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -19,3 +20,11 @@ def check_field_types(parcel_name, description, pick_up, destination):
     if isinstance(parcel_name, str) and isinstance(description, str) and isinstance(pick_up, str) \
             and isinstance(destination, str):
         return True
+
+
+def removes_white_spaces(*fields):
+    """function that removes white spaces from the field"""
+    for field in fields:
+        if not field.strip():
+            return True
+
