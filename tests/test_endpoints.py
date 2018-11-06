@@ -36,3 +36,9 @@ def test_white_spaces_in_post_parcel_orders(client):
     assert response.status_code == 400
     assert json.loads(response.data)['error'] == 'your fields contains white spaces'
 
+
+# test post parcel order endpoint
+def test_post_parcel_orders_endpoint(client):
+    response = client.post('api/v1/parcels', data=json.dumps(test_data.good_data))
+    assert response.status_code == 201
+    assert json.loads(response.data)['message'] == 'parcel delivery orders created successfully'
