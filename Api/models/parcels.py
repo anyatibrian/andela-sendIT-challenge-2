@@ -3,13 +3,6 @@ import random
 parcel_orders = []
 
 
-def serial_number():
-    """functions respnsible for generating parcel serials numbers"""
-    for x in range(10):
-        serial = random.randint(1, 101)
-    return serial
-
-
 class ParcelOrders:
     """class responsible for creating the parcel orders"""
     def __init__(self):
@@ -28,4 +21,4 @@ class ParcelOrders:
             'serial_no': serial
         }
         parcel_orders.append(parcel_order)
-        return parcel_orders
+        return parcel_order
