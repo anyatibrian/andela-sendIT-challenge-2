@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from ..Api_v1 import api_v1
 from ..models.parcels import ParcelOrders
-from Api.utilities import checks_empty_fields
+from Api.utilities import checks_empty_fields, check_field_types
 
 
 @api_v1.route('/parcels', methods=['POST'])
@@ -15,10 +15,16 @@ def post_parcels():
                            json_data['pick_up'], json_data['destination']):
         return jsonify({'error': 'some fields are empty please '}), 400
 
+    # validates respective data types
+    if not check_field_types(json_data['parcel_name'], json_data['description'],
+                             json_data['destination'], json_data['pick_up']):
+        return jsonify({'error': ' parcel_name, description, destination, pick_up should be strings'}), 400
+
     # call to the create parcel methods
     parcel_order.create_orders(parcel_name=json_data['parcel_name'],
                                description=json_data['description'],
                                pick_up=json_data['pick_up'],
-                               destination=json_data['destination'])
+                               destination=json_data['destination']
+                               )
 
     return jsonify({'message': 'parcel delivery orders created successfully'}), 201

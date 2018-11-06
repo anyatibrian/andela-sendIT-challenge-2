@@ -12,3 +12,10 @@ def checks_empty_fields(*fields):
     for field in fields:
         if field == "":
             return True
+
+
+def check_field_types(parcel_name, description, pick_up, destination):
+    """ function that checks if the types are string and it for price """
+    if isinstance(parcel_name, str) and isinstance(description, str) and isinstance(pick_up, str) \
+            and isinstance(destination, str):
+        return True
