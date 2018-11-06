@@ -20,11 +20,19 @@ def client():
 def test_post_parcel_orders_empty_fields(client):
     response = client.post('api/v1/parcels', data=json.dumps(test_data.empty_fields))
     assert response.status_code == 400
-    assert b'some fields are empty please' in response.data
+    assert json.loads(response.data)['error'] == 'some fields are empty'
 
 
 # checks for bad input types in the field
 def test_check_invalid_fields_in_parcel_orders(client):
     response = client.post('api/v1/parcels', data=json.dumps(test_data.bad_data))
     assert response.status_code == 400
-    assert b'parcel_name, description, destination, pick_up should be strings' in response.data
+    assert json.loads(response.data)['error'] == 'parcel_name, description, destination, pick_up should be strings'
+
+
+# checks whether the post parcel field contains white spaces
+def test_white_spaces_in_post_parcel_orders(client):
+    response = client.post('api/v1/parcels', data=json.dumps(test_data.empty_space))
+    assert response.status_code == 400
+    assert json.loads(response.data)['error'] == 'your fields contains white spaces'
+
