@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import  jsonify
 from ..Api_v1 import api_v1
 from ..models.parcels import parcel_orders
 
