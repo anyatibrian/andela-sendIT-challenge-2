@@ -71,3 +71,20 @@ def test_get_single_parcel_orders(client):
     assert response.status_code == 200
     assert json.loads(response.data)['message'] == 'you dont have such a parcel order'
 
+
+# test for updating an order status
+def test_put_order_status_endpoint(client):
+    response = client.put('/api/v1/parcels/{}'.format(1), data=json.dumps({'status': 'cancel'}))
+    assert response.status_code == 201
+    assert json.loads(response.data)['message'] == 'your order has been successfully updated'
+
+
+# test for testing wrong status
+def test_bad_wrong_status(client):
+    response = client.put('/api/v1/parcels/{}'.format(1), data=json.dumps({'status': 'rear'}))
+    assert response.status_code == 400
+    assert json.loads(response.data)['error'] == 'wrong status'
+    # checking for wrong id
+    response = client.put('/api/v1/parcels/{}'.format(20), data=json.dumps({'status': 'cancel'}))
+    assert response.status_code == 200
+    assert json.loads(response.data)['message'] == 'you dont have such product'
