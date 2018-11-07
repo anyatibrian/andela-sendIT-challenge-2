@@ -23,3 +23,4 @@ good_data = {
             "pick_up": "tororo",
             "destination": "kampala"
            }
+
