@@ -1,5 +1,6 @@
 
 [![Build Status](https://www.travis-ci.org/anyatibrian/andela-sendIT-challenge-2.svg?branch=Develop)](https://www.travis-ci.org/anyatibrian/andela-sendIT-challenge-2)[![Coverage Status](https://coveralls.io/repos/github/anyatibrian/andela-sendIT-challenge-2/badge.svg?branch=ft-update-delivery-order-status-161776751)](https://coveralls.io/github/anyatibrian/andela-sendIT-challenge-2?branch=ft-update-delivery-order-status-161776751)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c527fc07a94cbeb48e3f/maintainability)](https://codeclimate.com/github/anyatibrian/andela-sendIT-challenge-2/maintainability)
 # sendIT
 SendIT is a courier service that helps users deliver parcels to different destinations. SendIT
 provides courier quotes based on weight categories
