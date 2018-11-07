@@ -22,9 +22,9 @@ def post_parcels():
 
     # checks for whites spaces in the field
     if removes_white_spaces(json_data['parcel_name'],
-                            json_data['description'],
                             json_data['pick_up'],
-                            json_data['destination']):
+                            json_data['destination'],
+                            json_data['description'], ):
         return jsonify({'error': 'your fields contains white spaces'}), 400
 
     # call to the create parcel methods
