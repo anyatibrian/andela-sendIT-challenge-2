@@ -22,10 +22,11 @@ def check_field_types(parcel_name, description, pick_up, destination):
         return True
 
 
-def removes_white_spaces(name, description, pickup, destination):
+def removes_white_spaces(*fields):
     """function that removes white spaces from the field"""
-    if not name.strip() and description.strip() and pickup.strip() and destination.strip():
-        return True
+    for field in fields:
+        if not field.strip():
+            return True
 
 
 def validate_status(status):
