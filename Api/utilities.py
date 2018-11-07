@@ -28,3 +28,8 @@ def removes_white_spaces(*fields):
         if not field.strip():
             return True
 
+
+def validate_status(status):
+    """function that validates status"""
+    if status != "pending" and status != "cancel" and status != "transit" and status != "Delivered":
+        return True
