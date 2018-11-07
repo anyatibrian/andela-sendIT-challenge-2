@@ -66,6 +66,7 @@ def test_get_single_parcel_orders(client):
     response = client.get('api/v1/parcels/{}'.format(1))
     assert response.status_code == 200
     assert json.loads(response.data)['parcel_order']['parcel_id'] == 1
+    # test for invalid parcel order id
     response = client.get('api/v1/parcels/{}'.format(4))
     assert response.status_code == 200
     assert json.loads(response.data)['message'] == 'you dont have such a parcel order'
