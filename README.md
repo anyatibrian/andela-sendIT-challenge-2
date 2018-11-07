@@ -18,7 +18,7 @@ provides courier quotes based on weight categories
 ## To view the API on Heroku 
 Copy this url paste it in a new tab
 ```
-- https://store-manager-123.herokuapp.com/api/v1/products
+- 
 
 ```
 
