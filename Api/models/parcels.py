@@ -9,8 +9,8 @@ class ParcelOrders:
     def __init__(self):
         pass
 
-    def create_orders(self, parcel_name, description, pick_up, destination, status="pending", price=0000):
-        str_price = str(price)
+    def create_orders(self, parcel_name, description, pick_up, destination):
+        str_price = str(0)
         """function creates the parcel order list """
         serial = serial_generator()
         parcel_order = {
@@ -19,7 +19,7 @@ class ParcelOrders:
             'description': description,
             'pick-up': pick_up,
             'destination': destination,
-            'status': status,
+            'status': "pending",
             'serial_no': serial,
             "delivery_price": str_price+"ugx"
         }
