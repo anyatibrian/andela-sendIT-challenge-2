@@ -16,6 +16,12 @@ def client():
     cxt.pop()
 
 
+# test whether the parcel order list is empty
+def test_empty_parcel_order_list(client):
+    response = client.get('api/v1/parcels')
+    assert b'you dont have an orders yet' in response.data
+
+
 # checks whether the users has posted empty fields
 def test_post_parcel_orders_empty_fields(client):
     response = client.post('api/v1/parcels', data=json.dumps(test_data.empty_fields))
@@ -42,3 +48,13 @@ def test_post_parcel_orders_endpoint(client):
     response = client.post('api/v1/parcels', data=json.dumps(test_data.good_data))
     assert response.status_code == 201
     assert json.loads(response.data)['message'] == 'parcel delivery orders created successfully'
+
+
+# test get all parcel orders  endpoint
+def test_get_all_parcel_orders(client):
+    response = client.post('api/v1/parcels', data=json.dumps(test_data.good_data))
+    assert response.status_code == 201
+    response = client.get('api/v1/parcels')
+    assert response.status_code == 200
+    assert json.loads(response.data)['parcel_orders'][0]['description'] == 'has two doors and checks out'
+
