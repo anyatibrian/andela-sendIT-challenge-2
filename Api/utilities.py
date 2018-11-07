@@ -1,6 +1,5 @@
 import string
 import random
-import re
 
 
 def serial_generator(size=6, chars=string.ascii_uppercase + string.digits):
