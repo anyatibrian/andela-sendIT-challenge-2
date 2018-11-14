@@ -14,3 +14,8 @@ class Users:
         }
         user_lists.append(user)
         return user_lists
+
+    def login_user(self):
+        for user in user_lists:
+            if user['username'] == self.username and user['password'] == self.password:
+                return user['user_id']
