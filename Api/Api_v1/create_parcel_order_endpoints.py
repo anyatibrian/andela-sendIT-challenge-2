@@ -34,4 +34,4 @@ def post_parcels():
                                destination=json_data['destination']
                                )
 
-    return jsonify({'message': 'parcel delivery orders created successfully'}), 201
+    return jsonify({'message': 'parcel delivery order created successfully'}), 201
