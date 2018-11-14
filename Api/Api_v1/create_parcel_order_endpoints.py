@@ -10,7 +10,7 @@ def post_parcels():
     json_data = request.get_json(force=True)
 
     parcel_order = ParcelOrders()
-    # checks for the empty fields in the json data
+    # checks for the empty fields in the field in the post endpoint
     if checks_empty_fields(json_data['parcel_name'], json_data['description'],
                            json_data['pick_up'], json_data['destination']):
         return jsonify({'error': 'some fields are empty'}), 400
