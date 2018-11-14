@@ -1,5 +1,4 @@
 from Api.utilities import serial_generator
-
 parcel_orders = []
 
 
@@ -10,11 +9,11 @@ class ParcelOrders:
         pass
 
     def create_orders(self, parcel_name, description, pick_up, destination):
-        str_price = str(0)
         """function creates the parcel order list """
+        str_price = str(0)
         serial = serial_generator()
         parcel_order = {
-            'parcel_id': len(parcel_orders) + 1,
+            'parcel_id': len(parcel_orders),
             'parcel_name': parcel_name,
             'description': description,
             'pick-up': pick_up,
