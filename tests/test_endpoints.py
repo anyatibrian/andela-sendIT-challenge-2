@@ -19,7 +19,7 @@ def client():
 # test whether the parcel order list is empty
 def test_empty_parcel_order_list(client):
     response = client.get('api/v1/parcels')
-    assert b'you dont have an orders yet' in response.data
+    assert b'your parcel order list is empty' in response.data
 
 
 # checks whether the users has posted empty fields
@@ -69,7 +69,7 @@ def test_get_single_parcel_orders(client):
     # test for invalid parcel order id
     response = client.get('api/v1/parcels/{}'.format(4))
     assert response.status_code == 200
-    assert json.loads(response.data)['message'] == 'you dont have such a parcel order'
+    assert json.loads(response.data)['message'] == 'parcel order does not exist'
 
 
 # test for updating an order status
