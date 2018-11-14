@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, session
 from ..Api_v1 import api_v1
 from ..models.parcels import ParcelOrders
 from Api.utilities import checks_empty_fields, check_field_types, removes_white_spaces
@@ -31,7 +31,8 @@ def post_parcels():
     parcel_order.create_orders(parcel_name=json_data['parcel_name'],
                                description=json_data['description'],
                                pick_up=json_data['pick_up'],
-                               destination=json_data['destination']
+                               destination=json_data['destination'],
+                               user_id=session['user_id']
                                )
 
     return jsonify({'message': 'parcel delivery order created successfully'}), 201

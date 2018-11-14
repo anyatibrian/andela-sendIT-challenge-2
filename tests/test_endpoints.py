@@ -16,6 +16,20 @@ def client():
     cxt.pop()
 
 
+# test use register user_endpoints
+def test_register_users(client):
+    response = client.post('api/v1/users', data=json.dumps(test_data.user_data))
+    assert response.status_code == 201
+    assert b'user has been created successfully' in response.data
+
+
+# test user login login endpoint
+def test_user_login_endpoints(client):
+    response = client.post('api/v1/users/login', data=json.dumps(test_data.user_data))
+    assert response.status_code == 200
+    assert json.loads(response.data)['user_info'] == 1
+
+
 # test whether the parcel order list is empty
 def test_empty_parcel_order_list(client):
     response = client.get('api/v1/parcels')
