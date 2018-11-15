@@ -2,6 +2,7 @@ from Api.Api_v1 import api_v1
 from flask import jsonify, request, session
 from Api.models.users import Users, user_lists
 from Api.models.parcels import parcel_orders
+from flask_jwt_extended import create_access_token
 
 
 @api_v1.route('/users', methods=['POST'])
@@ -26,8 +27,9 @@ def login_users():
     json_data = request.get_json(force=True)
     users = Users(username=json_data['username'], password=json_data['password'])
     user_info = users.login_user()
-    session['user_id'] = user_info
-    return jsonify({'user_info': user_info}), 200
+    # session['user_id'] = user_info
+    access_token = create_access_token(identity=user_info)
+    return jsonify({'user_info': access_token}), 200
 
 
 @api_v1.route('/users/<int:user_id>', methods=['GET'])
