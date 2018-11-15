@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from ..Api_v1 import api_v1
-from ..models.parcels import ParcelOrders
+from ..models.parcels import ParcelOrders, parcel_orders
 from Api.utilities import checks_empty_fields, check_field_types, removes_white_spaces
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -31,7 +31,6 @@ def post_parcels():
                             json_data['pick_up'],
                             json_data['destination']):
         return jsonify({'error': 'your fields contains white spaces'}), 400
-
     # call to the create parcel methods
     parcel_order.create_orders(parcel_name=json_data['parcel_name'],
                                description=json_data['description'],

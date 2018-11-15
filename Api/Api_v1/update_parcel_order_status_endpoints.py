@@ -16,4 +16,4 @@ def put_parcel_delivery_status(parcel_id):
         delivery_order[0]['status'] = json_data['status']
         return jsonify({'message': 'your order has been successfully updated'}), 201
     else:
-        return jsonify({'message': 'you dont have such product'}), 200
+        return jsonify({'message': 'parcel order not found'}), 404

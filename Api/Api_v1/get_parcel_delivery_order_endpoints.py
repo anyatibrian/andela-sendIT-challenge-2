@@ -22,4 +22,4 @@ def get_single_parcel_order(parcel_id):
         parcel_order = [parcel_order for parcel_order in parcel_orders if parcel_order['parcel_id'] == parcel_id]
         return jsonify({'parcel_order': parcel_order[0]}), 200
     else:
-        return jsonify({'message': 'parcel order not found'}), 200
+        return jsonify({'message': 'parcel order not found'}), 404

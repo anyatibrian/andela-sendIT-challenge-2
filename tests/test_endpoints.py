@@ -131,7 +131,7 @@ def test_get_single_parcel_orders(client, register_user, login_user):
     assert json.loads(response.data)['parcel_order']['parcel_id'] == 1
     # test for invalid parcel order id
     response = client.get('api/v1/parcels/{}'.format(4), headers=dict(Authorization="Bearer " + access_token))
-    assert response.status_code == 200
+    assert response.status_code == 404
     assert json.loads(response.data)['message'] == 'parcel order not found'
 
 
@@ -158,8 +158,8 @@ def test_bad_wrong_status(client, register_user, login_user):
     # checking for wrong id
     response = client.put('/api/v1/parcels/{}'.format(20), headers=dict(Authorization="Bearer " + access_token),
                           data=json.dumps({'status': 'canceled'}))
-    assert response.status_code == 200
-    assert json.loads(response.data)['message'] == 'you dont have such product'
+    assert response.status_code == 404
+    assert json.loads(response.data)['message'] == 'parcel order not found'
 
 
 def test_user_parcels_endpoints(client, register_user, login_user):
@@ -169,5 +169,5 @@ def test_user_parcels_endpoints(client, register_user, login_user):
     response = client.get('/api/v1/users/1', headers=dict(Authorization="Bearer " + access_token))
     assert response.status_code == 200
     response = client.get('/api/v1/users/1000', headers=dict(Authorization="Bearer " + access_token))
-    assert response.status_code == 200
-    assert b'user does not exist' in response.data
+    assert response.status_code == 404
+    assert b'user not found' in response.data
