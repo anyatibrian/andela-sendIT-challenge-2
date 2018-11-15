@@ -2,9 +2,11 @@ from flask import request, jsonify
 from ..Api_v1 import api_v1
 from ..models.parcels import parcel_orders
 from Api.utilities import validate_status
+from flask_jwt_extended import jwt_required
 
 
 @api_v1.route('parcels/<int:parcel_id>', methods=['PUT'])
+@jwt_required
 def put_parcel_delivery_status(parcel_id):
     json_data = request.get_json(force=True)
     if validate_status(json_data['status']):

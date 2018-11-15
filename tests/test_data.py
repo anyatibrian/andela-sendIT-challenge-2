@@ -27,5 +27,5 @@ good_data = {
 
 user_data = {
     "username": "anyatibrian",
-    "password": "password"
+    "password": "password@123"
 }

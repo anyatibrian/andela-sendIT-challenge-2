@@ -3,6 +3,7 @@ from flask import jsonify, request, session
 from Api.models.users import Users, user_lists
 from Api.models.parcels import parcel_orders
 from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required
 
 
 @api_v1.route('/users', methods=['POST'])
@@ -29,10 +30,11 @@ def login_users():
     user_info = users.login_user()
     # session['user_id'] = user_info
     access_token = create_access_token(identity=user_info)
-    return jsonify({'user_info': access_token}), 200
+    return jsonify({'access-token': access_token}), 200
 
 
 @api_v1.route('/users/<int:user_id>', methods=['GET'])
+@jwt_required
 def get_users_orders(user_id):
     if 0 < user_id < len(parcel_orders):
         orders = [orders for orders in parcel_orders if orders['user_id'] == user_id]

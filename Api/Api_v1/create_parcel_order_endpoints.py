@@ -1,15 +1,20 @@
-from flask import request, jsonify, session
+from flask import request, jsonify
 from ..Api_v1 import api_v1
 from ..models.parcels import ParcelOrders
 from Api.utilities import checks_empty_fields, check_field_types, removes_white_spaces
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 @api_v1.route('/parcels', methods=['POST'])
+@jwt_required
 def post_parcels():
     # creating the json request
     json_data = request.get_json(force=True)
 
+    # getting the identity of the currently logged in user
+    current_user_id = get_jwt_identity()
     parcel_order = ParcelOrders()
+
     # checks for the empty fields in the field in the post endpoint
     if checks_empty_fields(json_data['parcel_name'], json_data['description'],
                            json_data['pick_up'], json_data['destination']):
@@ -32,7 +37,7 @@ def post_parcels():
                                description=json_data['description'],
                                pick_up=json_data['pick_up'],
                                destination=json_data['destination'],
-                               user_id=session['user_id']
+                               user_id=current_user_id
                                )
 
     return jsonify({'message': 'parcel delivery order created successfully'}), 201
