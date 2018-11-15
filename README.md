@@ -16,6 +16,10 @@ provides courier quotes based on weight categories
 - `Get all parcel delivery order` Enables user to view all parcel delivery orders made
 - `Get single parcel order` Enables user  to get specific parcel delivery order
 - `update parcel order status` Enables  user to update her parcel delivery order status 
+- `create new user` Enables  users to create their own accounts
+- `login user` Enables  users having accounts to login 
+- `get all parcel orders according to the user id`Enables users to get all her specific parcel orders 
+
 ## To view the API on Heroku 
 Copy this url paste it in a new tab
 ```
@@ -54,14 +58,15 @@ This API is versioned using url versioning starting, with the letter 'v'
 This is version one"v1" of the API
 ```
 ## End Points
-|           End Point                      |     Functionality                              |
-|   -------------------------------------- |------------------------------------------------|
-|     POST api/v1/parcels                  | creates a new parcel delivery order            |  
-|     GET  api/v1/parcels                  | get all the parcel delivery order              |   
-|     GET  api/v1/parcels/parcel_id        |get a specific parcel delivery order            |  
-|     PUT api/v1/parcels/parcel_id         |updates a specific parcel order delivery status |
-
-
+|           End Point                      |     Functionality                                   |
+|------------------------------------------|-----------------------------------------------------|
+|     POST api/v1/parcels                  |creates a new parcel delivery order                  |  
+|     GET  api/v1/parcels                  |get all the parcel delivery order                    |   
+|     GET  api/v1/parcels/parcel_id        |get a specific parcel delivery order                 |  
+|     PUT api/v1/parcels/parcel_id         |updates a specific parcel delivery order status      |
+|     GET api/v1/users/user_id             |get all the parcel delivery order by a specific users|
+|     POST api/v1/users                    |registers users                                      |
+|     POST api/v1/users/login              |logs in in users                                     | 
 
 
 ## Contributors
