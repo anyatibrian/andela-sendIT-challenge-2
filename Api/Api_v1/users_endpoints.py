@@ -1,9 +1,10 @@
 from Api.Api_v1 import api_v1
-from flask import jsonify, request, session
+from flask import jsonify, request
 from Api.models.users import Users, user_lists
 from Api.models.parcels import parcel_orders
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
+from Api.utilities import  check_users_exist
 
 
 @api_v1.route('/users', methods=['POST'])
@@ -26,6 +27,11 @@ def registers_user():
 def login_users():
     """function that logs in users"""
     json_data = request.get_json(force=True)
+
+    # checking where the user exist in the list
+    if not check_users_exist(json_data['username'], json_data['password']):
+        return jsonify({'message': 'user does not exit please create and account'}), 401
+
     users = Users(username=json_data['username'], password=json_data['password'])
     user_info = users.login_user()
     # session['user_id'] = user_info

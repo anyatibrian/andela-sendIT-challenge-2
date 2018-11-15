@@ -36,8 +36,13 @@ def login_user(client, username='anyatibrian', password='password@123'):
     return client.post('api/v1/users/login', data=json.dumps(data))
 
 
-@pytest.fixture(scope='module')
-# test use register user_endpoints
+# test user login login endpoint
+def test_user_wrong_login_endpoints(client):
+    response = client.post('api/v1/users/login', data=json.dumps({'username':'password', 'password':'anyatibrian'}))
+    assert response.status_code == 401
+    assert b'user does not exit please create and account' in response.data
+
+
 def test_register_users(client):
     response = client.post('api/v1/users', data=json.dumps(test_data.user_data))
     assert response.status_code == 201

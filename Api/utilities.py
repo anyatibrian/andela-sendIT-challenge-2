@@ -1,5 +1,6 @@
 import string
 import random
+from Api.models.users import user_lists
 
 
 def serial_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -32,3 +33,10 @@ def validate_status(status):
     """function that validates status"""
     if status != "pending" and status != "canceled" and status != "transit" and status != "Delivered":
         return True
+
+
+def check_users_exist(username, password):
+    """function that whether the user exist"""
+    for user in user_lists:
+        if user['password'] == password and user['username'] == username:
+            return True
