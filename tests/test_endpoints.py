@@ -83,7 +83,7 @@ def test_get_single_parcel_orders(client):
     # test for invalid parcel order id
     response = client.get('api/v1/parcels/{}'.format(4))
     assert response.status_code == 200
-    assert json.loads(response.data)['message'] == 'parcel order does not exist'
+    assert json.loads(response.data)['message'] == 'parcel order not found'
 
 
 # test for updating an order status
