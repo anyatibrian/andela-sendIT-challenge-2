@@ -36,4 +36,4 @@ def get_users_orders(user_id):
         orders = [orders for orders in parcel_orders if orders['user_id'] == user_id]
         return jsonify({'my orders': orders}), 200
     else:
-        return jsonify({'message': 'user does not exist'})
+        return jsonify({'message': 'user does not exist'}), 200

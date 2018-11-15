@@ -102,3 +102,11 @@ def test_bad_wrong_status(client):
     response = client.put('/api/v1/parcels/{}'.format(20), data=json.dumps({'status': 'canceled'}))
     assert response.status_code == 200
     assert json.loads(response.data)['message'] == 'you dont have such product'
+
+
+def test_user_parcels_endpoints(client):
+    response = client.get('/api/v1/users/1')
+    assert response.status_code == 200
+    response = client.get('/api/v1/users/1000')
+    assert response.status_code == 200
+    assert b'user does not exist' in response.data
