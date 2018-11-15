@@ -8,7 +8,7 @@ class Users:
 
     def create_users(self):
         user = {
-            'user_id': len(user_lists)+1,
+            'user_id': len(user_lists) + 1,
             'username': self.username,
             'password': self.password
         }

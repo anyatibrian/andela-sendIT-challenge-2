@@ -13,7 +13,7 @@ class ParcelOrders:
         str_price = str(0)
         serial = serial_generator()
         parcel_order = {
-            'parcel_id': len(parcel_orders),
+            'parcel_id': len(parcel_orders)+1,
             'parcel_name': parcel_name,
             'description': description,
             'pick-up': pick_up,
