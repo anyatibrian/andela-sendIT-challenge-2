@@ -5,6 +5,7 @@ from config import config
 def create_app(config_name):
     """the create app method that creates an app instance"""
     app = Flask(__name__)
+    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
     app.config.from_object(config[config_name])
     # registering the blue print object
     from Api.Api_v1 import api_v1

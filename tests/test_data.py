@@ -1,3 +1,4 @@
+from flask import session
 empty_fields = {
                 "parcel_name": "",
                 "description": "",
@@ -24,3 +25,7 @@ good_data = {
             "destination": "kampala"
            }
 
+user_data = {
+    "username": "anyatibrian",
+    "password": "password"
+}

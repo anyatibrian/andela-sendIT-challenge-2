@@ -16,6 +16,20 @@ def client():
     cxt.pop()
 
 
+# test use register user_endpoints
+def test_register_users(client):
+    response = client.post('api/v1/users', data=json.dumps(test_data.user_data))
+    assert response.status_code == 201
+    assert b'user has been created successfully' in response.data
+
+
+# test user login login endpoint
+def test_user_login_endpoints(client):
+    response = client.post('api/v1/users/login', data=json.dumps(test_data.user_data))
+    assert response.status_code == 200
+    assert json.loads(response.data)['user_info'] == 1
+
+
 # test whether the parcel order list is empty
 def test_empty_parcel_order_list(client):
     response = client.get('api/v1/parcels')
@@ -74,7 +88,7 @@ def test_get_single_parcel_orders(client):
 
 # test for updating an order status
 def test_put_order_status_endpoint(client):
-    response = client.put('/api/v1/parcels/{}'.format(1), data=json.dumps({'status': 'cancel'}))
+    response = client.put('/api/v1/parcels/{}'.format(1), data=json.dumps({'status': 'canceled'}))
     assert response.status_code == 201
     assert json.loads(response.data)['message'] == 'your order has been successfully updated'
 
@@ -85,6 +99,14 @@ def test_bad_wrong_status(client):
     assert response.status_code == 400
     assert json.loads(response.data)['error'] == 'wrong status'
     # checking for wrong id
-    response = client.put('/api/v1/parcels/{}'.format(20), data=json.dumps({'status': 'cancel'}))
+    response = client.put('/api/v1/parcels/{}'.format(20), data=json.dumps({'status': 'canceled'}))
     assert response.status_code == 200
     assert json.loads(response.data)['message'] == 'you dont have such product'
+
+
+def test_user_parcels_endpoints(client):
+    response = client.get('/api/v1/users/1')
+    assert response.status_code == 200
+    response = client.get('/api/v1/users/1000')
+    assert response.status_code == 200
+    assert b'user does not exist' in response.data
