@@ -22,7 +22,7 @@ def check_field_types(parcel_name, description, pick_up, destination):
         return True
 
 
-def removes_white_spaces(*fields):
+def avoid_white_space_char(*fields):
     """function that removes white spaces from the field"""
     for field in fields:
         if not field.strip():

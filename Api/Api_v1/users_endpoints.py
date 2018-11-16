@@ -4,14 +4,19 @@ from Api.models.users import Users, user_lists
 from Api.models.parcels import parcel_orders
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
-from Api.utilities import check_users_exist
+from Api.utilities import check_users_exist, checks_empty_fields, avoid_white_space_char
 
 
 @api_v1.route('/users', methods=['POST'])
 def registers_user():
     """function that registers users"""
     json_data = request.get_json(force=True)
-
+    # checks for the empty field
+    if checks_empty_fields(json_data['username'], json_data['password']):
+        return jsonify({'message': 'please enter your username and password'})
+        # checks for white spaces
+    if avoid_white_space_char(json_data['username'], json_data['password']):
+        return jsonify({'message': 'white space char not allowed'})
     # checking whether the user exist in the list
     for users in user_lists:
 
