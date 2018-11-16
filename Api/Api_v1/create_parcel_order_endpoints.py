@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from ..Api_v1 import api_v1
-from ..models.parcels import ParcelOrders, parcel_orders
+from ..models.parcels import ParcelOrders
 from Api.utilities import checks_empty_fields, check_field_types, removes_white_spaces
 from flask_jwt_extended import jwt_required, get_jwt_identity
 

@@ -40,3 +40,4 @@ def check_users_exist(username, password):
     for user in user_lists:
         if user['password'] == password and user['username'] == username:
             return True
+

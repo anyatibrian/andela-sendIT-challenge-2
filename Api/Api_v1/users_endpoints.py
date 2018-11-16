@@ -4,7 +4,7 @@ from Api.models.users import Users, user_lists
 from Api.models.parcels import parcel_orders
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
-from Api.utilities import  check_users_exist
+from Api.utilities import check_users_exist
 
 
 @api_v1.route('/users', methods=['POST'])
