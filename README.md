@@ -30,7 +30,7 @@ Copy this url paste it in a new tab
 ## Installation
 First clone this repository
 ```
-$ https://github.com/anyatibrian/andela-sendIT-challenge-2/tree/Develop
+$ https://github.com/anyatibrian/andela-sendIT-challenge-2.git
 $ cd andela-sendIT-challenge-2
 ```
 Create virtual environment and install it
